@@ -1,5 +1,7 @@
 - hosts: localhost
   connection: local
+  vars:
+    home: "{{ lookup('env', 'HOME') }}"
   pre_tasks:
   - name: update
     become: true
@@ -12,7 +14,7 @@
   # apparently include and import does different things
   # https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html#includes-vs-imports
   - import_tasks: tasks/docker.yml
-  - import_tasks: tasks/dotfiles.yml
-  - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/zsh.yml
+  - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/etc.yml
+  - import_tasks: tasks/dotfiles.yml
