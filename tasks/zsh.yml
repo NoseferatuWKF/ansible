@@ -25,5 +25,5 @@
 - name: powerlevel10k
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
-    dest: "{{ lookup('env', 'ZSH_CUSTOM') }}/themes/powerlevel10k"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/themes/powerlevel10k"
   tags: *zsh_tags
