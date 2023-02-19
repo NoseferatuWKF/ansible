@@ -7,7 +7,7 @@
       force_apt_get: true
       update_cache: true
       state: present
-    tags: ["main", "docker", "nvim", "zsh"]
+    tags: ["main", "docker", "nvim", "zsh", "etc"]
   tasks:
   # apparently include and import does different things
   # https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html#includes-vs-imports
@@ -15,3 +15,4 @@
   - import_tasks: tasks/dotfiles.yml
   - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/zsh.yml
+  - import_tasks: tasks/etc.yml
