@@ -1,0 +1,37 @@
+- name: docker deps
+  become: true
+  apt:
+    force_apt_get: true
+    name: ["ca-certificates", "curl", "gnupg", "lsb-release"]
+  tags: &docker_tags ["main", "docker"]
+
+- name: gpg
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  tags: *docker_tags
+
+- name: apt repo
+  become: true
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+  tags: *docker_tags
+
+- name: install finally
+  become: true
+  apt:
+    force_apt_get: true
+    update_cache: true
+    name: ["docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin"]
+    state: latest
+  tags: *docker_tags
+
+- name: start docker
+  become: true
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  tags: *docker_tags

@@ -1,0 +1,22 @@
+- name: nvim deps
+  apt:
+    force_apt_get: true
+    name: ["ninja-build", "gettext", "cmake", "g++", "pkg-config", "unzip", "doxygen"]
+  tags: &nvim_tags ["main", "nvim"]
+
+- name: clone
+  git:
+    repo: https://github.com/neovim/neovim.git
+    dest: "{{ lookup('env', 'HOME') }}/neovim"
+  tags: *nvim_tags
+
+- name: build & install
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && make install"
+  tags: *nvim_tags
+
+- name: kickstart
+  git:
+    repo: https://github.com/nvim-lua/kickstart.nvim.git
+    dest: "{{ lookup('env', 'HOME') }}/.config/nvim"
+  tags: *nvim_tags

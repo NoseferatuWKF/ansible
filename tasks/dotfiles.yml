@@ -1,0 +1,17 @@
+- name: install stow
+  apt: name=stow
+  tags: &dotfiles_tags ["main", "dotfiles"]
+
+- name: clone repo
+  git:
+      repo: git@github.com:NoseferatuWKF/.dotfiles.git
+      dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+      recursive: yes
+      update: yes
+      accept_hostkey: yes
+      version: master
+  tags: *dotfiles_tags
+
+- name: stow
+  debug:
+    msg: (TODO)
