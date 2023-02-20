@@ -6,7 +6,7 @@ RUN apt-get update && \
  	apt-get install -y software-properties-common build-essential && \ 
  	apt-add-repository -y ppa:ansible/ansible && \ 
  	apt-get update && \ 
- 	apt-get install -y git curl stow ansible && \
+ 	apt-get install -y git curl stow ansible vim && \
  	apt-get clean autoclean && \
  	apt-get autoremove -y
 
