@@ -4,14 +4,18 @@
     name: ["ninja-build", "gettext", "cmake", "g++", "pkg-config", "unzip", "doxygen"]
   tags: &nvim_tags ["main", "nvim"]
 
+- name: mac deps
+  shell: "brew install ninja libtool cmake pkg-config gettext curl"
+  tags: [*nvim_tags, "mac"]
+
 - name: clone
   git:
     repo: https://github.com/neovim/neovim.git
     dest: "{{ lookup('env', 'HOME') }}/neovim"
-  tags: *nvim_tags
+  tags: [*nvim_tags, "mac"]
 
 - name: build & install
   become: true
   shell: "cd {{ lookup('env', 'HOME') }}/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && make install"
-  tags: *nvim_tags
+  tags: [*nvim_tags, "mac"]
 
