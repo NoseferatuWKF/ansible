@@ -6,6 +6,18 @@
   shell: chsh -s $(which zsh)
   tags: *zsh_tags
 
+- name: check first otherwise everything breaks
+  file:
+    path: "{{ home }}/.oh-my-zsh"
+    state: directory
+  register: omz
+  tags: *zsh_tags
+
+- name: uninstall if exists
+  shell: "chmod a+x {{ home }}/.oh-my-zsh/tools/uninstall.sh && yes | {{ home }}/.oh-my-zsh/tools/uninstall.sh" 
+  when: omz is defined
+  tags: *zsh_tags
+
 - name: oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   tags: *zsh_tags
