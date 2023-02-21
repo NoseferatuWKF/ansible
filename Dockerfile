@@ -1,4 +1,4 @@
-FROM ubuntu:bionic AS based
+FROM ubuntu:focal AS based
 WORKDIR /usr/local/bin
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \ 

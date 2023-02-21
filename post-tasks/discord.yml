@@ -1,0 +1,14 @@
+- name: poke discord
+  uri:
+    url: "{{ discord_webhook }}"
+    method: POST
+    body_format: json
+    body:
+      avatar_url: "{{ icon }}"
+      content: "Hi {{ user_id }}! https://github.com/NoseferatuWKF/ansible was triggered"
+      embeds:  '[ { "fields": [ 
+        { "name": "Hostname", "value": "{{ ansible_facts.hostname }}", "inline": true }, 
+        { "name": "Distribution", "value": "{{ ansible_facts.distribution }}", "inline": true }, 
+        { "name": "Machine", "value": "{{ ansible_facts.machine }}", "inline": true } 
+      ] } ]'
+  tags: ["main", "discord"]

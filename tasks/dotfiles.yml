@@ -8,6 +8,8 @@
     dest: "{{ home }}/.dotfiles"
     accept_hostkey: true
     version: master
+    force: true
+    update: true
   tags: *dotfile_tags
 
 - name: stow
