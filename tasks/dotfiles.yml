@@ -4,7 +4,7 @@
 
 - name: mac stow
   shell: "brew install stow"
-  tags: [*dotfile_tags, "mac"]
+  tags: mac
 
 - name: clone repo
   git:

@@ -1,3 +1,9 @@
 - name: tmux
+  become: true
   apt: name=tmux
-  tags: ["main", "etc", "tmux"]
+  tags: ["main", "etc"]
+
+- name: ripgrep for telescope
+  become: true
+  apt: name=ripgrep
+  tags: ["main", "etc", "nvim"]
