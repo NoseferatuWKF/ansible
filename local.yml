@@ -32,7 +32,6 @@
       61636663393336623636313034313461383337303331323561376234633562656439613535303761
       3465316230393833660a373333616430613531623635326332376338633731663132323037373738
       30656461666536336433656361316330623636623233336236633532336538643765
-
   pre_tasks:
   - name: update
     become: true
@@ -41,14 +40,7 @@
       update_cache: true
       state: present
     tags: ["main", "secrets", "docker", "nvim", "zsh", "etc"]
-  
-  - name: brew a cuppa tea
-    shell: "brew update"
-    tags: mac
-
   tasks:
-  # apparently include and import does different things
-  # https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_includes.html#includes-vs-imports
   - import_tasks: tasks/secrets.yml
   - import_tasks: tasks/docker.yml
   - import_tasks: tasks/zsh.yml

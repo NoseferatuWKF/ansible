@@ -1,12 +1,13 @@
 - name: nvim deps
+  become: true
   apt:
     force_apt_get: true
     name: ["ninja-build", "gettext", "cmake", "g++", "pkg-config", "unzip", "doxygen"]
   tags: &nvim_tags ["main", "nvim"]
 
 - name: mac deps
-  shell: "brew install ninja libtool cmake pkg-config gettext curl ripgrep"
-  tags: mac
+  shell: "brew install ninja libtool cmake pkg-config gettext curl"
+  tags: ["brew", "mac"]
 
 - name: clone
   git:
@@ -23,3 +24,4 @@
 - name: resolve mac sudo prob
   become: true
   shell: "sudo chown /usr/local/bin/nvim && sudo chown -R $(whoami) .local"
+  tags: ["brew", "mac"] # brew tag here to skip for non macs

@@ -1,4 +1,5 @@
 - name: install zsh
+  become: true
   apt: name=zsh
   tags: &zsh_tags ["main", "zsh"]
 
@@ -7,15 +8,14 @@
   tags: *zsh_tags
 
 - name: check first otherwise everything breaks
-  file:
+  stat:
     path: "{{ home }}/.oh-my-zsh"
-    state: directory
   register: omz
   tags: [*zsh_tags, "mac"]
 
 - name: uninstall if exists
   shell: "chmod a+x {{ home }}/.oh-my-zsh/tools/uninstall.sh && yes | {{ home }}/.oh-my-zsh/tools/uninstall.sh" 
-  when: omz is defined
+  when: omz.stat.exists == true
   tags: [*zsh_tags, "mac"]
 
 - name: oh-my-zsh
@@ -23,7 +23,7 @@
   tags: [*zsh_tags, "mac"]
 
 - name: zsh-autosuggestions
-  ansible.builtin.git:
+  git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
     dest: "{{ home }}/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags: [*zsh_tags, "mac"] 

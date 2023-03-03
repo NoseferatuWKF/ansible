@@ -1,9 +1,11 @@
-- name: tmux
+- name: utils
   become: true
-  apt: name=tmux
-  tags: ["main", "etc"]
+  apt:
+    name: ["tmux", "tree", "ripgrep", "fzf", "htop", "i3", "rsync"]
+  tags: ["main", "nvim", "etc"]
 
-- name: ripgrep for telescope
+- name: mac utils
   become: true
-  apt: name=ripgrep
-  tags: ["main", "etc", "nvim"]
+  shell: "brew install tmux tree ripgrep fzf rsync xclip"
+  tags: ["brew", "mac"]
+
