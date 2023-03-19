@@ -7,16 +7,12 @@
 
 - name: gpg
   become: true
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
+  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker.gpg"
   tags: *docker_tags
 
 - name: apt repo
   become: true
-  apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu focal stable
-    state: present
+  shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
   tags: *docker_tags
 
 - name: install finally

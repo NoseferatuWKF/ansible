@@ -39,7 +39,7 @@
       force_apt_get: true
       update_cache: true
       state: present
-    tags: ["main", "secrets", "docker", "nvim", "zsh", "etc"]
+    tags: ["main", "secrets", "docker", "nvim", "zsh", "brave", "etc"]
   tasks:
   - import_tasks: tasks/secrets.yml
   - import_tasks: tasks/docker.yml
@@ -47,6 +47,7 @@
   - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/etc.yml
   - import_tasks: tasks/dotfiles.yml
+  - import_tasks: tasks/brave.yml
   post_tasks:
   - import_tasks: post-tasks/discord.yml
   - import_tasks: post-tasks/shout-out.yml
