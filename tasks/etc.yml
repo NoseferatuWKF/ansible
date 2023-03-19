@@ -2,10 +2,52 @@
   become: true
   apt:
     name: ["tmux", "tree", "ripgrep", "fzf", "htop", "i3", "rsync"]
-  tags: ["main", "nvim", "etc"]
+  tags: ["main", "nvim", "tmux", "etc"]
+
+- name: git editor
+  git_config:
+    name: core.editor
+    scope: global
+    value: /usr/local/bin/nvim
+  tags: ["main", "mac", "nvim", "git", "etc"]
+
+- name: aesthetics
+  become: true
+  apt:
+    name: ["nitrogen"]
+  tags: ["main", "aesthetics", "etc"]
 
 - name: mac utils
   become: true
   shell: "brew install tmux tree ripgrep fzf rsync xclip"
   tags: ["brew", "mac"]
 
+- name: tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ home }}/.tmux/plugins/tpm"
+  tags: ["main", "mac", "tmux", "etc"]
+
+- name: install Hack Bold
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete.ttf
+    dest: "{{ home }}/.local/share/fonts/Hack Bold Nerd Font Complete.ttf"
+  tags: &fonts_tags ["main", "fonts", "nvim", "tmux"]
+
+- name: install Hack BoldItalic
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/BoldItalic/complete/Hack%20Bold%20Italic%20Nerd%20Font%20Complete.ttf
+    dest: "{{ home }}/.local/share/fonts/Hack BoldItalic Nerd Font Complete.ttf"
+  tags: *fonts_tags
+
+- name: install Hack Italic
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Italic/complete/Hack%20Italic%20Nerd%20Font%20Complete.ttf
+    dest: "{{ home }}/.local/share/fonts/Hack Italic Nerd Font Complete.ttf"
+  tags: *fonts_tags
+
+- name: install Hack Regular
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf
+    dest: "{{ home }}/.local/share/fonts/Hack Regular Nerd Font Complete.ttf"
+  tags: *fonts_tags

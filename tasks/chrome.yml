@@ -1,0 +1,17 @@
+- name: download chrome
+  get_url: 
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+    dest: "{{ home }}/chrome.deb" 
+  tags: &brave_tags ["main", "chrome"]
+
+- name: install chrome
+  become: true
+  apt:
+    deb: "{{ home }}/chrome.deb"
+  tags: *brave_tags
+
+- name: cleanup
+  file:
+    path: "{{ home }}/chrome.deb"
+    state: absent
+  tags: *brave_tags

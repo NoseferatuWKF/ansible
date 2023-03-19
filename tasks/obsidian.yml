@@ -1,0 +1,27 @@
+- name: download obsidian
+  get_url:
+    url: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.16/obsidian_1.1.16_amd64.deb
+    dest: "{{ home }}/obsidian.deb"
+  tags: &obsidian_tags ["main", "obsidian"]
+
+- name: install obsidian
+  become: true
+  apt:
+    deb: "{{ home }}/obsidian.deb"
+  tags: *obsidian_tags
+
+- name: get notes
+  git:
+    repo: git@github.com:NoseferatuWKF/athena.git
+    dest: "{{ home }}/athena"
+    accept_hostkey: true
+    recursive: false # not sure yet if to get private notes
+    force: true
+    update: true
+  tags: *obsidian_tags
+
+- name: cleanup
+  file:
+    path: "{{ home }}/obsidian.deb"
+    state: absent
+  tags: *obsidian_tags
