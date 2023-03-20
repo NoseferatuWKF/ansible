@@ -1,0 +1,32 @@
+- name: coding base
+  debug:
+    msg: "setting base tags"
+  tags: &coding_tags ["main", "coding"]
+
+- name: rust
+  shell: >
+    curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs -o {{ home }}/rust.sh && 
+    chmod a+x {{ home }}/rust.sh && {{ home }}/rust.sh -y && rm {{ home }}/rust.sh && 
+    . {{ home }}/.cargo/env
+  tags: [*coding_tags, "rust"]
+
+- name: go
+  become: true
+  shell: >
+    curl --proto "=https" --tlsv1.2 -sSf https://dl.google.com/go/go1.20.2.linux-amd64.tar.gz -o {{ home }}/go.tar.gz && 
+    tar -C /usr/local -xzf {{ home }}/go.tar.gz && 
+    rm {{ home }}/go.tar.gz
+  tags: [*coding_tags, "go"]
+
+- name: java
+  become: true
+  apt:
+    name: ["default-jre", "default-jdk"]
+    update_cache: true
+  tags: [*coding_tags, "java"]
+
+- name: fnm nodejs
+  shell: >
+    curl -fsSL https://fnm.vercel.app/install | bash && 
+    exec zsh -c "source {{ home }}/.zshrc"
+  tags: [*coding_tags, "nodejs"]

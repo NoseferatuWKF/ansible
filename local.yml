@@ -47,9 +47,11 @@
   - import_tasks: tasks/zsh.yml
   - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/etc.yml
+  - import_tasks: tasks/coding.yml
   - import_tasks: tasks/obsidian.yml
   - import_tasks: tasks/slack.yml
   - import_tasks: tasks/discord.yml
+  - import_tasks: tasks/spotify.yml
   - import_tasks: tasks/dotfiles.yml
   - import_tasks: tasks/aesthetics.yml
   post_tasks:

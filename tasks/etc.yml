@@ -1,7 +1,7 @@
 - name: utils
   become: true
   apt:
-    name: ["tmux", "tree", "ripgrep", "fzf", "htop", "i3", "rsync"]
+    name: ["tmux", "tree", "ripgrep", "fzf", "htop", "i3", "rsync", "xclip"]
   tags: ["main", "nvim", "tmux", "etc"]
 
 - name: git editor
