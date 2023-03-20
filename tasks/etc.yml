@@ -11,12 +11,6 @@
     value: /usr/local/bin/nvim
   tags: ["main", "mac", "nvim", "git", "etc"]
 
-- name: aesthetics
-  become: true
-  apt:
-    name: ["nitrogen"]
-  tags: ["main", "aesthetics", "etc"]
-
 - name: mac utils
   become: true
   shell: "brew install tmux tree ripgrep fzf rsync xclip"

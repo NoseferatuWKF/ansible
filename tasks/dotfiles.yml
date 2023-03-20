@@ -1,7 +1,7 @@
 - name: install stow
   become: true
   apt: name=stow
-  tags: &dotfiles_tags ["main", "dotfiles", "zsh", "nvim", "etc"]
+  tags: &dotfiles_tags ["main", "dotfiles", "zsh", "nvim", "aesthetics", "etc"]
 
 - name: mac stow
   shell: "brew install stow"

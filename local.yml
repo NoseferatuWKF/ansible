@@ -48,7 +48,10 @@
   - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/etc.yml
   - import_tasks: tasks/obsidian.yml
+  - import_tasks: tasks/slack.yml
+  - import_tasks: tasks/discord.yml
   - import_tasks: tasks/dotfiles.yml
+  - import_tasks: tasks/aesthetics.yml
   post_tasks:
   - import_tasks: post-tasks/discord.yml
   - import_tasks: post-tasks/shout-out.yml

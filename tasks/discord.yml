@@ -1,0 +1,17 @@
+- name: download discord
+  get_url: 
+    url: https://dl.discordapp.net/apps/linux/0.0.25/discord-0.0.25.deb
+    dest: "{{ home }}/discord.deb" 
+  tags: &slack_tags ["main", "discord"]
+
+- name: install discord
+  become: true
+  apt:
+    deb: "{{ home }}/discord.deb"
+  tags: *slack_tags
+
+- name: cleanup
+  file:
+    path: "{{ home }}/discord.deb"
+    state: absent
+  tags: *slack_tags

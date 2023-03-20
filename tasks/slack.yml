@@ -1,0 +1,17 @@
+- name: download slack
+  get_url: 
+    url: https://downloads.slack-edge.com/releases/linux/4.29.149/prod/x64/slack-desktop-4.29.149-amd64.deb
+    dest: "{{ home }}/slack.deb" 
+  tags: &slack_tags ["main", "slack"]
+
+- name: install slack
+  become: true
+  apt:
+    deb: "{{ home }}/slack.deb"
+  tags: *slack_tags
+
+- name: cleanup
+  file:
+    path: "{{ home }}/slack.deb"
+    state: absent
+  tags: *slack_tags

@@ -1,0 +1,14 @@
+- name: nitrogen 
+  become: true
+  apt: name=nitrogen
+  tags: &aesthetics_tags ["main", "aesthetics"]
+
+- name: download all wallpaper
+  git:
+    repo: git@github.com:NoseferatuWKF/wallpapers.git
+    dest: "{{ home }}/wallpapers"
+  tags: *aesthetics_tags
+
+- name: restore wallpaper
+  shell: nitrogen --restore
+  tags: *aesthetics_tags
