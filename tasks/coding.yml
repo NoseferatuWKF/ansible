@@ -5,8 +5,7 @@
 
 - name: rust
   shell: >
-    curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs -o {{ home }}/rust.sh && 
-    chmod a+x {{ home }}/rust.sh && {{ home }}/rust.sh -y && rm {{ home }}/rust.sh && 
+    curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && 
     . {{ home }}/.cargo/env
   tags: [*coding_tags, "rust"]
 
@@ -30,3 +29,5 @@
     curl -fsSL https://fnm.vercel.app/install | bash && 
     exec zsh -c "source {{ home }}/.zshrc"
   tags: [*coding_tags, "nodejs"]
+
+# ruby

@@ -1,7 +1,17 @@
 - name: utils
   become: true
   apt:
-    name: ["tmux", "tree", "ripgrep", "fzf", "htop", "i3", "rsync", "xclip"]
+    name:
+      - tmux
+      - tree
+      - ripgrep
+      - fzf
+      - htop
+      - i3
+      - rsync
+      - xclip
+      - entr
+      - flameshot
   tags: ["main", "nvim", "tmux", "etc"]
 
 - name: git editor
@@ -13,7 +23,7 @@
 
 - name: mac utils
   become: true
-  shell: "brew install tmux tree ripgrep fzf rsync xclip"
+  shell: "brew install tmux tree ripgrep fzf rsync xclip entr"
   tags: ["brew", "mac"]
 
 - name: tpm
