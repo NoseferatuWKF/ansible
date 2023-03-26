@@ -7,7 +7,6 @@
       - ripgrep
       - fzf
       - htop
-      - i3
       - rsync
       - xclip
       - entr
@@ -32,11 +31,17 @@
     dest: "{{ home }}/.tmux/plugins/tpm"
   tags: ["main", "mac", "tmux", "etc"]
 
+- name: create font dir
+  file:
+    path: "{{ home }}/.local/share/fonts"
+    state: directory
+  tags: &fonts_tags ["main", "fonts", "nvim", "tmux"]
+
 - name: install Hack Bold
   get_url:
     url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete.ttf
     dest: "{{ home }}/.local/share/fonts/Hack Bold Nerd Font Complete.ttf"
-  tags: &fonts_tags ["main", "fonts", "nvim", "tmux"]
+  tags: *fonts_tags
 
 - name: install Hack BoldItalic
   get_url:

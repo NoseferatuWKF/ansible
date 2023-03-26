@@ -4,41 +4,11 @@
   tags: &zsh_tags ["main", "zsh"]
 
 - name: change shell
-  shell: chsh -s $(which zsh)
+  become: true
+  shell: "chsh -s $(which zsh) {{ lookup('env', 'USER') }}"
   tags: *zsh_tags
 
-- name: check first otherwise everything breaks
-  stat:
-    path: "{{ home }}/.oh-my-zsh"
-  register: omz
-  tags: [*zsh_tags, "mac"]
-
-- name: uninstall if exists
-  shell: >
-    chmod a+x {{ home }}/.oh-my-zsh/tools/uninstall.sh && 
-    yes | {{ home }}/.oh-my-zsh/tools/uninstall.sh 
-  when: omz.stat.exists == true
-  tags: [*zsh_tags, "mac"]
-
-- name: oh-my-zsh
-  shell: >
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  tags: [*zsh_tags, "mac"]
-
-- name: zsh-autosuggestions
-  git:
-    repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: "{{ home }}/.oh-my-zsh/plugins/zsh-autosuggestions"
-  tags: [*zsh_tags, "mac"] 
-
-- name: zsh-syntax-highlighting
-  git:
-    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: "{{ home }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
-  tags: [*zsh_tags, "mac"]
-
-- name: powerlevel10k
-  git:
-    repo: https://github.com/romkatv/powerlevel10k.git
-    dest: "{{ home }}/.oh-my-zsh/themes/powerlevel10k"
-  tags: [*zsh_tags, "mac"]
+- name: install antibody
+  become: true
+  shell: curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
+  tags: *zsh_tags

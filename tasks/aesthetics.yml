@@ -1,14 +1,11 @@
-- name: nitrogen 
+- name: aesthetics setup
   become: true
-  apt: name=nitrogen
+  apt:
+    name: ["nitrogen", "picom"]
   tags: &aesthetics_tags ["main", "aesthetics"]
 
-- name: download all wallpaper
+- name: download all wallpapers
   git:
     repo: git@github.com:NoseferatuWKF/wallpapers.git
     dest: "{{ home }}/wallpapers"
-  tags: *aesthetics_tags
-
-- name: restore wallpaper
-  shell: nitrogen --restore
   tags: *aesthetics_tags
