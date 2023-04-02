@@ -1,6 +1,6 @@
 - name: download discord
   get_url: 
-    url: https://dl.discordapp.net/apps/linux/0.0.25/discord-0.0.25.deb
+    url: https://dl.discordapp.net/apps/linux/0.0.26/discord-0.0.26.deb
     dest: "{{ home }}/discord.deb" 
   tags: &slack_tags ["main", "discord"]
 

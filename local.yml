@@ -39,11 +39,10 @@
       force_apt_get: true
       update_cache: true
       state: present
-    tags: ["main"]
+    tags: main
   tasks:
   - import_tasks: tasks/secrets.yml
   - import_tasks: tasks/chrome.yml
-  - import_tasks: tasks/docker.yml
   - import_tasks: tasks/zsh.yml
   - import_tasks: tasks/nvim.yml
   - import_tasks: tasks/i3.yml
@@ -55,6 +54,7 @@
   - import_tasks: tasks/aesthetics.yml
   - import_tasks: tasks/dotfiles.yml
   - import_tasks: tasks/coding.yml
+  - import_tasks: tasks/nerdctl.yml
   post_tasks:
   - import_tasks: post-tasks/discord.yml
   - import_tasks: post-tasks/shout-out.yml

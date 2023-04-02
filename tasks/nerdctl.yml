@@ -1,0 +1,80 @@
+- name: prepare
+  file:
+    path: "{{ home }}/nerdctl"
+    state: directory
+  tags: &nerdctl_tags ["main", "nerdctl"]
+
+- name: prepare cni
+  become: true
+  file:
+    path: "/opt/cni/bin"
+    state: directory
+  tags: *nerdctl_tags
+
+- name: nerd deps
+  become: true
+  apt:
+    name: ["containerd", "runc"]
+  tags: *nerdctl_tags
+
+- name: cni
+  get_url:
+    url: https://github.com/containernetworking/plugins/releases/download/v1.2.0/cni-plugins-linux-amd64-v1.2.0.tgz
+    dest: "{{ home }}/nerdctl/cni.tar.gz"
+  tags: *nerdctl_tags
+
+- name: buildkit
+  get_url:
+    url: https://github.com/moby/buildkit/releases/download/v0.11.5/buildkit-v0.11.5.linux-amd64.tar.gz
+    dest: "{{ home }}/nerdctl/buildkit.tar.gz"
+  tags: *nerdctl_tags
+
+- name: the actual nerd
+  get_url:
+    url: https://github.com/containerd/nerdctl/releases/download/v1.2.1/nerdctl-1.2.1-linux-amd64.tar.gz
+    dest: "{{ home }}//nerdctl/nerdctl.tar.gz"
+  tags: *nerdctl_tags
+
+- name: become the nerd
+  become: true
+  shell: >
+    tar -C /usr/local/bin -xzf {{ home }}/nerdctl/nerdctl.tar.gz && 
+    tar -C /opt/cni/bin -xzf {{ home }}/nerdctl/cni.tar.gz && 
+    tar -C /usr/local -xzf {{ home }}/nerdctl/buildkit.tar.gz
+  tags: *nerdctl_tags
+
+- name: cleanup
+  file:
+    path: "{{ home }}/nerdctl"
+    state: absent
+  tags: *nerdctl_tags
+
+- name: start containerd
+  become: true
+  service:
+    name: containerd
+    state: started
+    enabled: yes
+  tags: *nerdctl_tags
+
+- name: buildkit socket
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/moby/buildkit/master/examples/systemd/system/buildkit.socket
+    dest: /lib/systemd/system
+  tags: *nerdctl_tags
+
+- name: buildkit service
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/moby/buildkit/master/examples/systemd/system/buildkit.service
+    dest: /lib/systemd/system
+  tags: *nerdctl_tags
+
+- name: start buildkit
+  become: true
+  service:
+    name: buildkit
+    state: started
+    enabled: yes
+  tags: *nerdctl_tags
