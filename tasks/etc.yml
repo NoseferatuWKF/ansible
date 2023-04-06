@@ -18,18 +18,13 @@
     name: core.editor
     scope: global
     value: /usr/local/bin/nvim
-  tags: ["main", "mac", "nvim", "git", "etc"]
-
-- name: mac utils
-  become: true
-  shell: "brew install tmux tree ripgrep fzf rsync xclip entr"
-  tags: ["brew", "mac"]
+  tags: ["main", "nvim", "git", "etc"]
 
 - name: tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ home }}/.tmux/plugins/tpm"
-  tags: ["main", "mac", "tmux", "etc"]
+  tags: ["main", "tmux", "etc"]
 
 - name: create font dir
   file:

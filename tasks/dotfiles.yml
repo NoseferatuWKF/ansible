@@ -3,10 +3,6 @@
   apt: name=stow
   tags: &dotfiles_tags ["main", "dotfiles", "zsh", "nvim", "aesthetics", "etc"]
 
-- name: mac stow
-  shell: "brew install stow"
-  tags: ["brew", "mac"]
-
 - name: clone repo
   git:
     repo: git@github.com:NoseferatuWKF/.dotfiles.git
@@ -15,8 +11,8 @@
     version: master
     force: true
     update: true
-  tags: [*dotfiles_tags, "mac"]
+  tags: *dotfiles_tags
 
 - name: stow
   shell: "cd {{ home }}/.dotfiles && stow --adopt * && git restore ."
-  tags: [*dotfiles_tags, "mac"]
+  tags: *dotfiles_tags

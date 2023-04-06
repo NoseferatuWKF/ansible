@@ -5,27 +5,16 @@
     name: ["ninja-build", "gettext", "cmake", "g++", "pkg-config", "unzip", "doxygen"]
   tags: &nvim_tags ["main", "nvim"]
 
-- name: mac deps
-  shell: "brew install ninja libtool cmake pkg-config gettext curl"
-  tags: ["brew", "mac"]
-
 - name: clone
   git:
     repo: https://github.com/neovim/neovim.git
     dest: "{{ home }}/neovim"
     force: true
-  tags: [*nvim_tags, "mac"]
+  tags: *nvim_tags
 
 - name: build & install
   become: true
   shell: >
     cd {{ home }}/neovim && 
     make CMAKE_BUILD_TYPE=RelWithDebInfo && make install
-  tags: [*nvim_tags, "mac"]
-
-- name: resolve mac sudo prob
-  become: true
-  shell: >
-    sudo chown /usr/local/bin/nvim && 
-    sudo chown -R $(whoami) .local
-  tags: ["brew", "mac"] # brew tag here to skip for non macs
+  tags: *nvim_tags
