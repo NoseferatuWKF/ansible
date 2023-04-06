@@ -1,14 +1,14 @@
 - name: gpg
   become: true
   shell: >
-    curl -fsSL https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | 
+    curl -fsSL https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | \
     gpg --dearmor -o /usr/share/keyrings/spotify.gpg
   tags: &spotify_tags ["main", "spotify"]
 
 - name: apt repo
   become: true
   shell: >
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/spotify.gpg] http://repository.spotify.com stable non-free" | 
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/spotify.gpg] http://repository.spotify.com stable non-free" | \
     sudo tee /etc/apt/sources.list.d/spotify.list
   tags: *spotify_tags
 

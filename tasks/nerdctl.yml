@@ -38,8 +38,8 @@
 - name: become the nerd
   become: true
   shell: >
-    tar -C /usr/local/bin -xzf {{ home }}/nerdctl/nerdctl.tar.gz && 
-    tar -C /opt/cni/bin -xzf {{ home }}/nerdctl/cni.tar.gz && 
+    tar -C /usr/local/bin -xzf {{ home }}/nerdctl/nerdctl.tar.gz && \
+    tar -C /opt/cni/bin -xzf {{ home }}/nerdctl/cni.tar.gz && \
     tar -C /usr/local -xzf {{ home }}/nerdctl/buildkit.tar.gz
   tags: *nerdctl_tags
 

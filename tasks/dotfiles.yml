@@ -14,5 +14,6 @@
   tags: *dotfiles_tags
 
 - name: stow
-  shell: "cd {{ home }}/.dotfiles && stow --adopt * && git restore ."
+  shell: >
+    cd {{ home }}/.dotfiles && stow --adopt * && git restore .
   tags: *dotfiles_tags

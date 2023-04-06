@@ -1,14 +1,14 @@
 - name: gpg
   become: true
   shell: >
-    curl -fsSL https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2023.02.18_all.deb 
+    curl -fsSL https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2023.02.18_all.deb \
     -o {{ home }}/i3.deb && apt install {{ home }}/i3.deb 
   tags: &i3_tags ["main", "i3"]
 
 - name: apt repo
   become: true
   shell: >
-    echo "deb [arch=$(dpkg --print-architecture)] http://debian.sur5r.net/i3/ $(lsb_release -cs) universe" | 
+    echo "deb [arch=$(dpkg --print-architecture)] http://debian.sur5r.net/i3/ $(lsb_release -cs) universe" | \
     sudo tee /etc/apt/sources.list.d/sur5r-i3.list
   tags: *i3_tags
 
