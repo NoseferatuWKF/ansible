@@ -1,7 +1,7 @@
 - name: deep breaths
   shell: curl https://raw.githubusercontent.com/NoseferatuWKF/ansible/master/shout-out | cat
   register: shout
-  tags: &shout_out ["main", "shout-out"]
+  tags: &shout_out ["main", "post", "shout-out"]
 
 - name: SHOUT
   debug:

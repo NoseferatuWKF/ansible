@@ -11,4 +11,4 @@
         { "name": "Distribution", "value": "{{ ansible_facts.distribution }}", "inline": true }, 
         { "name": "Machine", "value": "{{ ansible_facts.machine }}", "inline": true } 
       ] } ]'
-  tags: ["main", "discord"]
+  tags: ["main", "post", "discord"]

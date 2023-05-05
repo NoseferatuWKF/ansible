@@ -26,7 +26,7 @@
 
 - name: fnm nodejs
   shell: >
-    curl -fsSL https://fnm.vercel.app/install | bash && \
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell && \
     exec zsh -c "source {{ home }}/.zshrc"
   tags: [*coding_tags, "nodejs"]
 
