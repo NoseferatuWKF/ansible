@@ -11,7 +11,7 @@
     version: master
     force: true
     update: true
-  tags: *dotfiles_tags
+  tags: [*dotfiles_tags, "repo"]
 
 - name: stow
   shell: >

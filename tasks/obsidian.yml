@@ -18,7 +18,7 @@
     recursive: false # not sure yet if to get private notes
     force: true
     update: true
-  tags: *obsidian_tags
+  tags: [*obsidian_tags, "repo"]
 
 - name: cleanup
   file:
