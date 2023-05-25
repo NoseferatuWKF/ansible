@@ -11,7 +11,8 @@
       - xclip
       - entr
       - flameshot
-  tags: ["main", "nvim", "tmux", "etc"]
+      - magic-wormhole
+  tags: ["main", "nvim", "tmux", "utils", "etc"]
 
 - name: tpm
   git:
