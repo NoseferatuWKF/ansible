@@ -9,11 +9,13 @@
     dest: "{{ home }}/.dotfiles"
     accept_hostkey: true
     version: master
-    force: true
-    update: true
+    force: false
+    update: false
   tags: [*dotfiles_tags, "repo"]
 
 - name: stow
   shell: >
-    cd {{ home }}/.dotfiles && stow --adopt * && git restore .
+    cd {{ home }}/.dotfiles && \
+    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire pop tmux zsh && \
+    git restore .
   tags: *dotfiles_tags

@@ -5,7 +5,7 @@
     body_format: json
     body:
       avatar_url: "{{ icon }}"
-      content: "Hi {{ user_id }}! https://github.com/NoseferatuWKF/ansible was triggered"
+      content: "Hi {{ user_id }}! setup is complete for {{ ansible_facts.distribution }}"
       embeds:  '[ { "fields": [ 
         { "name": "Hostname", "value": "{{ ansible_facts.hostname }}", "inline": true }, 
         { "name": "Distribution", "value": "{{ ansible_facts.distribution }}", "inline": true }, 

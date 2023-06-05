@@ -24,10 +24,10 @@
     update_cache: true
   tags: [*coding_tags, "java"]
 
-- name: fnm nodejs
-  shell: >
-    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell && \
-    exec zsh -c "source {{ home }}/.zshrc"
-  tags: [*coding_tags, "nodejs"]
+    # - name: fnm nodejs
+    # shell: >
+    #   curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell && \
+    #   exec zsh -c "source {{ home }}/.zshrc"
+    # tags: [*coding_tags, "nodejs"]
 
 # ruby
