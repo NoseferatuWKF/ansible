@@ -1,0 +1,17 @@
+proxmox:
+  hosts:
+    pop:
+      ansible_host:
+      ansible_user: noseferatu
+    kubernixtes:
+      ansible_host:
+      ansible_user: noseferatu
+    grafanix:
+      ansible_host:
+      ansible_user: noseferatu
+    kali:
+      ansible_host:
+      ansible_user: noseferatu
+    arch:
+      ansible_host:
+      ansible_user: noseferatu

@@ -9,13 +9,34 @@
     dest: "{{ home }}/.dotfiles"
     accept_hostkey: true
     version: master
-    force: false
-    update: false
-  tags: [*dotfiles_tags, "repo"]
+    force: true
+    update: true
+  tags: [*dotfiles_tags, "arch", "nix", "osx", "kali"]
 
-- name: stow
+- name: pop stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire pop tmux zsh && \
+    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire pop tmux zsh ssh && \
     git restore .
   tags: *dotfiles_tags
+
+- name: arch stow
+  shell: >
+    cd {{ home }}/.dotfiles && \
+    stow --adopt -v arch zsh tmux nvim git dunst nitrogen picom ssh && \
+    git restore .
+  tags: [*dotfiles_tags, "arch"]
+
+- name: nix stow
+  shell: >
+    cd {{ home }}/.dotfiles && \
+    stow --adopt -v nix zsh tmux nvim git dunst nitrogen picom ssh && \
+    git restore .
+  tags: [*dotfiles_tags, "nix"]
+
+- name: osx stow
+  shell: >
+    cd {{ home }}/.dotfiles && \
+    stow --adopt -v osx zsh tmux nvim git dunst nitrogen picom ssh && \
+    git restore .
+  tags: [*dotfiles_tags, "osx"]

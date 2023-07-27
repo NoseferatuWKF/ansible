@@ -14,7 +14,7 @@ password:
 
 pull:
 	ansible-pull -U https://github.com/NoseferatuWKF/ansible.git \
-	--vault-pass-file password --ask-become-pass
+	--vault-pass-file password --ask-become-pass playbooks/pop.yaml
 
 ansible: install password pull
 
