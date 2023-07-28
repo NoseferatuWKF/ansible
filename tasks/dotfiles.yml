@@ -16,7 +16,7 @@
 - name: pop stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire pop tmux zsh ssh && \
+    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire tmux zsh ssh && \
     git restore .
   tags: *dotfiles_tags
 
@@ -25,18 +25,18 @@
     cd {{ home }}/.dotfiles && \
     stow --adopt -v arch zsh tmux nvim git dunst nitrogen picom ssh && \
     git restore .
-  tags: [*dotfiles_tags, "arch"]
+  tags: arch
 
 - name: nix stow
   shell: >
     cd {{ home }}/.dotfiles && \
     stow --adopt -v nix zsh tmux nvim git dunst nitrogen picom ssh && \
     git restore .
-  tags: [*dotfiles_tags, "nix"]
+  tags: nix
 
 - name: osx stow
   shell: >
     cd {{ home }}/.dotfiles && \
     stow --adopt -v osx zsh tmux nvim git dunst nitrogen picom ssh && \
     git restore .
-  tags: [*dotfiles_tags, "osx"]
+  tags: osx

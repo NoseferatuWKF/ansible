@@ -37,8 +37,8 @@
       become: true
       apt:
         force_apt_get: true
-      update_cache: true
-      state: present
+        update_cache: true
+        state: present
       tags: main
   tasks:
     - import_tasks: ../tasks/secrets.yml

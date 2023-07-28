@@ -18,7 +18,7 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ home }}/.tmux/plugins/tpm"
-  tags: ["main", "tmux", "etc"]
+  tags: ["main", "tmux", "tpm", "etc"]
 
 - name: create font dir
   file:
