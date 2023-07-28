@@ -1,33 +1,38 @@
-- name: coding base
+- name: debugging
   debug:
-    msg: "setting base tags"
-  tags: &coding_tags ["main", "coding"]
+    msg: "FIXME: fnm malfunction"
+  tags=main
 
-- name: rust
-  shell: >
-    curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-    . {{ home }}/.cargo/env
-  tags: [*coding_tags, "rust"]
+# - name: coding base
+#   debug:
+#     msg: "setting base tags"
+#   tags: &coding_tags ["main", "coding"]
+#
+# - name: rust
+#   shell: >
+#     curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+#     . {{ home }}/.cargo/env
+#   tags: [*coding_tags, "rust"]
+#
+# - name: go
+#   become: true
+#   shell: >
+#     curl --proto "=https" --tlsv1.2 -sSf https://dl.google.com/go/go1.20.2.linux-amd64.tar.gz -o {{ home }}/go.tar.gz && \
+#     tar -C /usr/local -xzf {{ home }}/go.tar.gz && \
+#     rm {{ home }}/go.tar.gz
+#   tags: [*coding_tags, "go"]
+#
+# - name: java
+#   become: true
+#   apt:
+#     name: ["default-jre", "default-jdk"]
+#     update_cache: true
+#   tags: [*coding_tags, "java"]
 
-- name: go
-  become: true
-  shell: >
-    curl --proto "=https" --tlsv1.2 -sSf https://dl.google.com/go/go1.20.2.linux-amd64.tar.gz -o {{ home }}/go.tar.gz && \
-    tar -C /usr/local -xzf {{ home }}/go.tar.gz && \
-    rm {{ home }}/go.tar.gz
-  tags: [*coding_tags, "go"]
-
-- name: java
-  become: true
-  apt:
-    name: ["default-jre", "default-jdk"]
-    update_cache: true
-  tags: [*coding_tags, "java"]
-
-    # - name: fnm nodejs
-    # shell: >
-    #   curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell && \
-    #   exec zsh -c "source {{ home }}/.zshrc"
-    # tags: [*coding_tags, "nodejs"]
+# - name: fnm nodejs
+# shell: >
+#   curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell && \
+#   exec zsh -c "source {{ home }}/.zshrc"
+# tags: [*coding_tags, "nodejs"]
 
 # ruby
