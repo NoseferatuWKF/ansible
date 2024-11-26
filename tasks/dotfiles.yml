@@ -11,32 +11,39 @@
     version: master
     force: true
     update: true
-  tags: [*dotfiles_tags, "arch", "nix", "osx", "kali"]
+  tags: [*dotfiles_tags, "arch", "nix", "osx", "kali", "wsl"]
 
 - name: pop stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire tmux zsh ssh && \
+    stow --adopt -v dunst git i3 nitrogen nvim picom pipewire tmux zsh ssh yazi && \
     git restore .
   tags: *dotfiles_tags
 
 - name: arch stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v arch zsh tmux nvim git dunst nitrogen picom ssh && \
+    stow --adopt -v arch zsh tmux nvim git dunst nitrogen picom ssh yazi && \
     git restore .
   tags: arch
 
 - name: nix stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v nix zsh tmux nvim git dunst nitrogen picom ssh && \
+    stow --adopt -v nix zsh tmux nvim git dunst nitrogen picom ssh yazi && \
     git restore .
   tags: nix
 
 - name: osx stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v osx zsh tmux nvim git dunst nitrogen picom ssh && \
+    stow --adopt -v osx zsh tmux nvim git dunst nitrogen picom ssh yazi && \
     git restore .
   tags: osx
+
+- name: wsl stow
+  shell: >
+    cd {{ home }}/.dotfiles && \
+    stow --adopt -v wsl zsh tmux nvim git ssh yazi && \
+    git restore .
+  tags: wsl
