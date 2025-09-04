@@ -37,7 +37,7 @@
 - name: osx stow
   shell: >
     cd {{ home }}/.dotfiles && \
-    stow --adopt -v osx zsh tmux nvim git dunst nitrogen picom ssh yazi && \
+    stow --adopt -v mac zsh tmux nvim git ssh yazi && \
     git restore .
   tags: osx
 
